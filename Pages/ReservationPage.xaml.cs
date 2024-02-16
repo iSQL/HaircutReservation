@@ -1,20 +1,27 @@
+using HaircutReservation.Services;
 using Main.Models;
+using Microsoft.Extensions.Configuration;
 namespace Main.Pages;
 
 public partial class ReservationPage : ContentPage
 {
 	private readonly DataService _dataService = new DataService();
+	private readonly CosmosDataService _cosmosDataService; 
 	public ReservationViewModel Reservation { get; set; }
-
-	public ReservationPage()
+	IConfiguration configuration;
+	public ReservationPage(IConfiguration config)
 	{
 		InitializeComponent();
 		Reservation = new ReservationViewModel();
+		configuration = config;
+		
+		_cosmosDataService = new CosmosDataService(configuration["CosmosDb:ConnectionString"]);
 		this.BindingContext = Reservation;
 	}
 
 	private async void OnBookAppointmentClicked(object sender, EventArgs e)
 	{
+		await _cosmosDataService.GetReservationsAsync();
 		// Simple validation
 		if (string.IsNullOrWhiteSpace(Reservation.CustomerName) || string.IsNullOrWhiteSpace(Reservation.SelectedService))
 		{

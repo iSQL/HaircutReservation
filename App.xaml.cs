@@ -4,11 +4,10 @@ namespace Main
 {
 	public partial class App : Application
 	{
-		public App()
+		public App(ReservationPage page)
 		{
 			InitializeComponent();
-
-			MainPage = new NavigationPage(new ReservationPage());
+			MainPage = page;
 		}
 	}
 }
