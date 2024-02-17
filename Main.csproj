@@ -66,12 +66,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\ReservationPageAPI.xaml.cs">
+	    <DependentUpon>ReservationPageAPI.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\ReservationPage.xaml.cs">
 	    <DependentUpon>ReservationPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\ReservationPageAPI.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReservationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

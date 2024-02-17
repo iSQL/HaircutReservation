@@ -3,10 +3,15 @@ namespace Main.Models
 {
 	public class Reservation
 {
-        public int customerId { get; set; }
-        public DateTime AppointmentDate { get; set; }
-	public DateTime AppointmentTime { get; set; }
-	public string CustomerName { get; set; }
-	public string Service { get; set; } // For simplicity, we're using a string. This could be an enum or a separate model.
-}
+		private string _id;
+		public string id
+		{
+			get => _id ??= Guid.NewGuid().ToString(); // Autogenerate if null
+			set => _id = value;
+		}
+		public string CustomerName { get; set; }
+		public DateTime AppointmentDate { get; set; }
+		public string AppointmentSlot { get; set; } = "ToDo";
+		public string ServiceType { get; set; }
+	}
 }

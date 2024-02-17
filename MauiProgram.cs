@@ -22,8 +22,9 @@ namespace Main
 			
 
 			var cosmosConnectionString = builder.Configuration["CosmosDb:ConnectionString"];
-			builder.Services.AddSingleton<CosmosDataService>(s => new CosmosDataService(cosmosConnectionString));
+			builder.Services.AddSingleton(s => new CosmosDataService(cosmosConnectionString));
 			builder.Services.AddTransient<ReservationPage>();
+			builder.Services.AddTransient<ReservationPageAPI>();
 
 
 			builder.UseDevExpress();

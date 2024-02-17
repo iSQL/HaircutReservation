@@ -27,8 +27,8 @@ namespace Main.Models
 		}
 		public string Service
 		{
-			get { return Reservation.Service; }
-			set { Reservation.Service = value; }
+			get { return Reservation.ServiceType; }
+			set { Reservation.ServiceType = value; }
 		}
 
 		public string SelectedService
@@ -40,7 +40,7 @@ namespace Main.Models
 				{
 					_selectedService = value;
 					OnPropertyChanged(nameof(SelectedService));
-					Reservation.Service = value;
+					Reservation.ServiceType = value;
 				}
 			}
 		}

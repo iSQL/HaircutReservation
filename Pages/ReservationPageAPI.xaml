@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Main.Pages.ReservationPageAPI"
+             Title="Haircut Reservation">
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <DatePicker x:Name="datePicker" Date="{Binding AppointmentDate}"/>
+        <TimePicker x:Name="timePicker" Time="{Binding AppointmentTime}"/>
+        <Entry x:Name="customerNameEntry" Placeholder="Your name" Text="{Binding CustomerName}"/>
+        <Picker x:Name="servicePicker"
+        Title="Select Service"
+        ItemsSource="{Binding Services}"
+        SelectedItem="{Binding SelectedService}">
+        </Picker>
+
+        <Button Text="Book Appointment" Clicked="OnBookAppointmentClicked"/>
+        
+        <ListView x:Name="appointmentsListView" ItemSelected="OnAppointmentSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding CustomerName}" Detail="{Binding AppointmentDate, StringFormat='{0:G}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+    
+
+
+</ContentPage>

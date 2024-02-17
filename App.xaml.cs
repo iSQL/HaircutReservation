@@ -4,7 +4,7 @@ namespace Main
 {
 	public partial class App : Application
 	{
-		public App(ReservationPage page)
+		public App(ReservationPageAPI page)
 		{
 			InitializeComponent();
 			MainPage = page;
