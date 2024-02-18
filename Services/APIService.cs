@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,19 @@ namespace HaircutReservation.Services
 	{
 		private readonly HttpClient httpClient;
 		private readonly string baseUri = "https://localhost:7101/api"; 
-		private readonly string reservationsEndpoint = "/Reservations"; 
+		private readonly string reservationsEndpoint = "/Reservations";
+		private const string ApiKey = "HelloKey123";
 
 		public APIService()
 		{
 			this.httpClient = new HttpClient();
+			httpClient = new HttpClient
+			{
+				BaseAddress = new Uri(baseUri)
+			};
+
+			// Add httpClient API Key to every request
+			httpClient.DefaultRequestHeaders.Add("X-API-Key", ApiKey);
 		}
 
 		public async Task<List<Reservation>> GetReservationsAsync()
@@ -26,9 +35,13 @@ namespace HaircutReservation.Services
 				var response = await httpClient.GetFromJsonAsync<List<Reservation>>($"{baseUri}{reservationsEndpoint}");
 				return response ?? new List<Reservation>();
 			}
-			catch (Exception ex)
+			catch (HttpRequestException ex)
 			{
-				// Handle any exceptions (e.g., logging)
+				Console.WriteLine(ex.Message);
+				if (ex.StatusCode.HasValue)
+				{
+					Console.WriteLine($"HTTP Status Code: {ex.StatusCode.Value}");
+				}
 				throw;
 			}
 		}
@@ -47,7 +60,7 @@ namespace HaircutReservation.Services
 				{
 					Console.WriteLine($"HTTP Status Code: {ex.StatusCode.Value}");
 				}
-				throw; // Or handle the error gracefully
+				throw; 
 			}
 		}
 	}
