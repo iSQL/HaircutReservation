@@ -5,7 +5,7 @@ namespace Main.Pages;
 
 public partial class ReservationPage : ContentPage
 {
-	private readonly DataService _dataService = new DataService();
+	private readonly JSONDataService _dataService = new JSONDataService();
 	private readonly CosmosDataService _cosmosDataService; 
 	public ReservationViewModel Reservation { get; set; }
 	IConfiguration configuration;

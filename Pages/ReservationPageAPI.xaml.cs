@@ -7,18 +7,16 @@ public partial class ReservationPageAPI : ContentPage
 {
 	private readonly APIService _dataService = new APIService();
 	public ReservationViewModel Reservation { get; set; }
-	IConfiguration configuration;
-	public ReservationPageAPI(IConfiguration config)
+	public ReservationPageAPI()
 	{
 		InitializeComponent();
 		Reservation = new ReservationViewModel();
-		configuration = config;
 
 		_dataService = new APIService();
 		this.BindingContext = Reservation;
 	}
 
-	private async void OnBookAppointmentClicked(object sender, EventArgs e)
+	private async void OnBookReservationClicked(object sender, EventArgs e)
 	{
 		//await _dataService.GetReservationsAsync();
 		// Simple validation
@@ -34,7 +32,7 @@ public partial class ReservationPageAPI : ContentPage
 
 		// Refresh the list
 		var reservations = await _dataService.GetReservationsAsync();
-		appointmentsListView.ItemsSource = reservations;
+		reservationsListView.ItemsSource = reservations;
 		
 		await DisplayAlert("Success", $"Appointment booked for {Reservation.CustomerName} on {Reservation.AppointmentDate:d} at {Reservation.AppointmentDate:t} for a {Reservation.SelectedService}.", "OK");
 	}
@@ -42,9 +40,9 @@ public partial class ReservationPageAPI : ContentPage
 	{
 		base.OnAppearing();
 		var reservations = await _dataService.GetReservationsAsync();
-		appointmentsListView.ItemsSource = reservations;
+		reservationsListView.ItemsSource = reservations;
 	}
-	private void OnAppointmentSelected(object sender, SelectedItemChangedEventArgs e)
+	private void OnReservationSelected(object sender, SelectedItemChangedEventArgs e)
 	{
 		if (e.SelectedItem is Reservation selectedReservation)
 		{

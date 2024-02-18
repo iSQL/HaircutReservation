@@ -12,7 +12,7 @@ namespace HaircutReservation.Services
 	{
 		private readonly HttpClient httpClient;
 		private readonly string baseUri = "https://localhost:7101/api"; 
-		private readonly string reservationsEndpoint = "/Appointments"; 
+		private readonly string reservationsEndpoint = "/Reservations"; 
 
 		public APIService()
 		{

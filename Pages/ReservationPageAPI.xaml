@@ -14,9 +14,9 @@
         SelectedItem="{Binding SelectedService}">
         </Picker>
 
-        <Button Text="Book Appointment" Clicked="OnBookAppointmentClicked"/>
+        <Button Text="Book Appointment" Clicked="OnBookReservationClicked"/>
         
-        <ListView x:Name="appointmentsListView" ItemSelected="OnAppointmentSelected">
+        <ListView x:Name="reservationsListView" ItemSelected="OnReservationSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding CustomerName}" Detail="{Binding AppointmentDate, StringFormat='{0:G}'}" />

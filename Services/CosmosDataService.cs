@@ -17,7 +17,7 @@ namespace HaircutReservation.Services
 		public CosmosDataService(string connectionString)
 		{
 			this.cosmosClient = new CosmosClient(connectionString);
-			this.container = cosmosClient.GetContainer("HaircutAppointmentsDB", "Appointments");
+			this.container = cosmosClient.GetContainer("HaircutAppDB", "Reservations");
 		}
 		public async Task<List<Reservation>> GetReservationsAsync()
 		{
